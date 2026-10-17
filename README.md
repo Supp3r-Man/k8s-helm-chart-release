@@ -4,7 +4,7 @@
 
 A Helm chart with the pipeline around it: strict lint, schema validation, `values.schema.json` negative tests, chart-testing on a kind cluster, an install-upgrade-rollback test, and a release that publishes the chart as an **OCI artifact on GHCR** and then installs *that artifact*.
 
-> **What is verified.** On 2026-10-17 all of this ran green on GitHub Actions: `lint`, `install` (chart-testing) and `upgrade`; then pushing the tag `v0.1.0` ran `release`, whose `publish` and `verify` jobs both succeeded. The published chart is `oci://ghcr.io/supp3r-man/charts/webapp` version `0.1.0` (digest `sha256:752727ae...`). I did not run helm locally.
+> **What is verified.** On 2026-10-17 all of this ran green on GitHub Actions: `lint`, `install` (chart-testing) and `upgrade`; then pushing the tag `v0.1.0` ran `release`, whose `publish` and `verify` jobs both succeeded. The published chart is `oci://ghcr.io/supp3r-man/charts/webapp` version `0.1.0` (digest `sha256:facda475...`). I did not run helm locally.
 
 ## The chart (`charts/webapp`)
 
