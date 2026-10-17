@@ -30,6 +30,7 @@ Why install the published artifact: it proves what users will actually get, not 
 - The chart is **not signed** (no cosign or provenance file); see `k8s-supply-chain-gate` for signing.
 - The HPA is rendered and installed but cannot act: kind has no metrics-server.
 - Helm itself is the latest version `azure/setup-helm` installs, not pinned; kind node versions come from `helm/kind-action`'s default.
+- **A flaky check I found by running it twice.** On the copy of this repo in a second GitHub account, the first request from the throwaway probe pod returned nothing (the pod was still pulling its image) and failed 1 of 6 checks, although the same run on the first account had passed. `served_message` now retries. One green run is weaker evidence than it looks.
 - It publishes a chart only; there is no GitHub Pages index or release notes.
 
 ## Release a new version

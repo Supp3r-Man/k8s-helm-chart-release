@@ -27,9 +27,18 @@ expect() { # expect <description> <expected> <actual>
 
 revision() { helm list -f "^${release}\$" -o json | sed -n 's/.*"revision":"\([0-9]*\)".*/\1/p'; }
 
-served_message() { # what the Service answers on /, via a throwaway pod
-  kubectl run "probe-$RANDOM" --rm -i --restart=Never --quiet --image=busybox:1.37 -- \
-    wget -qO- -T 5 "http://$svc/" | tr -d '\r\n'
+served_message() { # what the Service answers on /, via a throwaway pod; retried because the first pod pulls its image
+  local out
+  for _ in 1 2 3 4 5; do
+    out="$(kubectl run "probe-$RANDOM" --rm -i --restart=Never --quiet --image=busybox:1.37 -- \
+      wget -qO- -T 5 "http://$svc/" 2>/dev/null | tr -d '\r\n' || true)"
+    if [ -n "$out" ]; then
+      printf '%s' "$out"
+      return 0
+    fi
+    sleep 2
+  done
+  return 0
 }
 
 step "install with message one"
