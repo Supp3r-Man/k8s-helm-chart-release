@@ -1,10 +1,10 @@
 # k8s-helm-chart-release
 
-![ci](https://github.com/Sup3rMar10/k8s-helm-chart-release/actions/workflows/ci.yml/badge.svg)
+![ci](https://github.com/Supp3r-Man/k8s-helm-chart-release/actions/workflows/ci.yml/badge.svg)
 
 A Helm chart with the pipeline around it: strict lint, schema validation, `values.schema.json` negative tests, chart-testing on a kind cluster, an install-upgrade-rollback test, and a release that publishes the chart as an **OCI artifact on GHCR** and then installs *that artifact*.
 
-> **What is verified.** On 2026-10-17 all of this ran green on GitHub Actions: `lint`, `install` (chart-testing) and `upgrade`; then pushing the tag `v0.1.0` ran `release`, whose `publish` and `verify` jobs both succeeded. The published chart is `oci://ghcr.io/sup3rmar10/charts/webapp` version `0.1.0` (digest `sha256:752727ae...`). I did not run helm locally.
+> **What is verified.** On 2026-10-17 all of this ran green on GitHub Actions: `lint`, `install` (chart-testing) and `upgrade`; then pushing the tag `v0.1.0` ran `release`, whose `publish` and `verify` jobs both succeeded. The published chart is `oci://ghcr.io/supp3r-man/charts/webapp` version `0.1.0` (digest `sha256:752727ae...`). I did not run helm locally.
 
 ## The chart (`charts/webapp`)
 
@@ -39,7 +39,7 @@ Bump `version` in `charts/webapp/Chart.yaml`, merge, then `git tag vX.Y.Z && git
 ## Use the published chart
 
 ```
-helm install demo oci://ghcr.io/sup3rmar10/charts/webapp --version 0.1.0 --set message="hello"
+helm install demo oci://ghcr.io/supp3r-man/charts/webapp --version 0.1.0 --set message="hello"
 ```
 
 (This requires the package to be readable by you; see the visibility note above.)
